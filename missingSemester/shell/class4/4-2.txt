@@ -1,0 +1,5 @@
+# 统计包含至少三个 'a' 且不以 's' 结尾的单词数量
+grep -i 'a.*a.*a' /usr/share/dict/words | grep -iv 's$' | wc -l
+
+# 提取后两个字符并进行排序和唯一化
+grep -i 'a.*a.*a' /usr/share/dict/words | grep -iv 's$' | tr 'A-Z' 'a-z' | sed 's/.*\(..$\)/\1/' | sort | uniq -c | sort -nr | head -n 3

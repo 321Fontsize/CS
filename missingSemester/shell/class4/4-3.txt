@@ -1,0 +1,11 @@
+Performing in-place substitution by redirecting the output directly to the same input file (sed s/REGEX/SUBSTITUTION/ input.txt > input.txt) is a bad idea because it can lead to data loss. Here's why:
+
+File Truncation: The redirection (> input.txt) will truncate the file before sed starts reading it. As a result, the file becomes empty, and the output of sed is written into an empty file. This essentially erases the original content.
+
+Race Condition: Depending on how the shell and the operating system handle the redirection, there's a potential race condition. If another process tries to read from or write to the file at the same time, unexpected behavior and data corruption can occur.
+
+To accomplish in-place substitution safely with sed, I use the -i option. The correct syntax is:
+
+sed -i 's/REGEX/SUBSTITUTION/' input.txt
+
+The -i option tells sed to edit files in place. This way, sed takes care of making the changes to the file without the need for redirection. Always ensure you have a backup of the file before using in-place substitution to avoid accidental data loss.
