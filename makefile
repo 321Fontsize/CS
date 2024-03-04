@@ -6,4 +6,5 @@ test: test.cpp # 测试test
 	./$@
 
 clean:
-	rm *.o test
+	rm *.o 
+	rm test
